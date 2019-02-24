@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Menu</title>
+</head>
+<body>
+<h1>JOTTO</h1>
+
+<form th:action="@{/game}"th:method="get" >
+    <p><input type="submit" value="Play New Game" /> </p>
+</form>
+
+<form method="get" action="/record">
+    <p><input type="submit" value=" View Record"/></p>
+</form>
+
+
+</body>
+</html>
