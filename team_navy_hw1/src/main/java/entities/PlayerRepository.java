@@ -12,8 +12,8 @@ import entities.Player;
 
 public interface PlayerRepository extends CrudRepository<Player, Integer> {
     @Procedure(name = "ValidateLogin")
-    int validateLogin(@Param("username") String username, @Param("loginpassword") String loginpassword);
+    Integer validateLogin(@Param("username") String username, @Param("loginpassword") String loginpassword);
 
     @Procedure(name = "NewLogin")
-    int newLogin(@Param("username") String username, @Param("loginpassword") String loginpassword);
+    Integer newLogin(@Param("username") String username, @Param("loginpassword") String loginpassword);
 }
