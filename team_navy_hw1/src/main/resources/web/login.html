@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jotto - Log In</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>    
+	<div class="padding-all">
+        <div class="header">
+            <h1>JOTTO</h1>
+        </div>
+        <div class="design-w3l">
+            <div class="mail-form-agile">
+                <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
+                    <input type="text" name="name" placeholder="Username" required="" th:field="*{username}" />
+                    <input type="password" name="password" placeholder="Password" required="" th:field="*{password}" class="padding"/>
+                    <input type="submit" value="Log In" /> <input type="submit" value="Create Account" />
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
