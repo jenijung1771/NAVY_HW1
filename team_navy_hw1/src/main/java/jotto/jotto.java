@@ -17,7 +17,7 @@ public class jotto {
 		boolean user =false;
 		boolean comp =false;
 		ArrayList<String> wordlist = new ArrayList<String>();
-		File file = new File("src/jotto/words.txt"); 
+		File file = new File("src/main/java/jotto/words.txt"); 
 		  BufferedReader br = new BufferedReader(new FileReader(file));   
 		  String st; 
 		  while ((st = br.readLine()) != null) {
@@ -149,7 +149,22 @@ while (user==false&&comp==false) {
 		return Boolean;}
 	
     
-	public static int validWord( String words) {
+	public static int validWord( String words) throws IOException {
+		ArrayList<String> wordlist = new ArrayList<String>();
+		File file = new File("src/main/java/jotto/words.txt"); 
+		  BufferedReader br = new BufferedReader(new FileReader(file));   
+		  String st; 
+		  while ((st = br.readLine()) != null) {
+			  wordlist.add(st);}
+		  int compareletter=0;;
+		  for (int i=0;i<wordlist.size();i++) {
+			  String x=wordlist.get(i);
+			  if (x.equals(words)) {
+				  compareletter=1;
+				 }}
+		  if (compareletter==0) {
+			  return 0;
+		  }
 
 		if (words.length()!=5) {
 			//System.out.println("me wrong 1");
