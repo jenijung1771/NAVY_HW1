@@ -38,11 +38,11 @@ background-attachment: fixed;
 
 @font-face{
 font-family: "Audiowide-Regular";
-src:url(../fonts/Audiowide-Regular.ttf);
+src:url(fonts/Audiowide-Regular.ttf);
 }
 @font-face{
 font-family: "Asap-Regular";
-src:url(../fonts/Asap-Regular.ttf);
+src:url(fonts/Asap-Regular.ttf);
 }
 .padding-all{
 padding:100px;
@@ -140,7 +140,7 @@ letter-spacing:1.4px;
 }
 .footer p a {
 color:#D65B88;
-font-weight:blod;
+font-weight:bold;
 -webkit-transition-duration: 0.8s;
 transition-duration: 0.8s;
 }
