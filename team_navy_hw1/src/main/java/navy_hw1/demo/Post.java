@@ -6,6 +6,7 @@ public class Post {
     private long id;
     private String username;
     private String password;
+    private boolean createNew;
     private Date created_at;
     private Date updated_at;
 
@@ -32,6 +33,10 @@ public class Post {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public boolean getCreateNew() { return createNew; }
+
+    public void setCreateNew(boolean createNew) { this.createNew = createNew; }
 
     public Date getCreated_at() {
         return created_at;

@@ -1,3 +1,10 @@
 navy_hw1\demo\Post.class
+entities\PlaysRepository.class
+entities\PlayerRepository.class
+entities\Player.class
+entities\Plays.class
 navy_hw1\demo\PostsController.class
+entities\GameRepository.class
+jotto\jotto.class
 navy_hw1\demo\DemoApplication.class
+entities\Game.class

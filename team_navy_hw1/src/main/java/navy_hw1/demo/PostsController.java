@@ -17,20 +17,33 @@ public class PostsController {
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
     public String newPost(Model model) {
         model.addAttribute("post", new Post());
-        return "LogPage";
+        return "login";
     }
 
     @RequestMapping(value = "/posts", method = RequestMethod.POST)
     public String submitPost(@ModelAttribute("post") Post post) {
         String username = post.getUsername();
         String password = post.getPassword();
+        boolean createNew = post.getCreateNew();
+        Integer result;
 
-        Integer result = playerRepository.validateLogin(username, password);
+        if (createNew) {
+            result = playerRepository.newLogin(username, password);
 
-        if (result == 1) {
-            return "Home";
+            if (result == 0) {
+                return "index";
+            } else {
+                return "login"; // user already exists
+            }
+
         } else {
-            return "LogPage"; // invalid credentials
+            result = playerRepository.validateLogin(username, password);
+
+            if (result == 1) {
+                return "index";
+            } else {
+                return "login"; // invalid credentials
+            }
         }
     }
 }

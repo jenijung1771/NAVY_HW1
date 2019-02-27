@@ -15,7 +15,7 @@
                 <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
                     <input type="text" name="name" placeholder="Username" required="" th:field="*{username}" />
                     <input type="password" name="password" placeholder="Password" required="" th:field="*{password}" class="padding"/>
-                    <p>Create a new account:<input type="checkbox" th:field=*{createNew}/></p>
+                    <p>Create a new account:<input type="checkbox" th:field="*{createNew}"/></p>
                     <input type="submit" value="Submit" />
                 </form>
             </div>
