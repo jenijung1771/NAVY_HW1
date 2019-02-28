@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Game {
@@ -11,7 +12,9 @@ public class Game {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int GameID;
 
-    private String DateStarted;
+    private String PlayerID;
+
+    private Timestamp DateStarted;
 
     private String PlayerWord;
 
@@ -23,7 +26,9 @@ public class Game {
         return GameID;
     }
 
-    public String getDateStarted() {
+    public String getPlayerID() { return PlayerID; }
+
+    public Timestamp getDateStarted() {
         return DateStarted;
     }
 
@@ -43,7 +48,9 @@ public class Game {
         GameID = gameID;
     }
 
-    public void setDateStarted(String dateStarted) {
+    public void setPlayerID(String playerID) { PlayerID = playerID; }
+
+    public void setDateStarted(Timestamp dateStarted) {
         DateStarted = dateStarted;
     }
 
@@ -57,5 +64,12 @@ public class Game {
 
     public void setOutcome(String outcome) {
         Outcome = outcome;
+    }
+
+    public Game(String playerID, Timestamp dateStarted, String playerWord, String computerWord) {
+        PlayerID = playerID;
+        DateStarted = dateStarted;
+        PlayerWord = playerWord;
+        ComputerWord = computerWord;
     }
 }

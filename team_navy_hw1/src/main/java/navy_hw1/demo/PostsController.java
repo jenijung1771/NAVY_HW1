@@ -1,5 +1,6 @@
 package navy_hw1.demo;
 
+import entities.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -10,9 +11,11 @@ import entities.PlayerRepository;
 @Controller
 @EnableAutoConfiguration
 public class PostsController {
-
     @Autowired
     private PlayerRepository playerRepository;
+
+    @Autowired
+    private GameRepository gameRepository;
 
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
     public String newPost(Model model) {
@@ -40,6 +43,7 @@ public class PostsController {
             result = playerRepository.validateLogin(username, password);
 
             if (result == 1) {
+                post.setGames(gameRepository.findByPlayerID(username));
                 return "index";
             } else {
                 return "login"; // invalid credentials
