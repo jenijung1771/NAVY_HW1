@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Plays implements Serializable {
+public class Plays {
     @Id
     private int gameID;
 
