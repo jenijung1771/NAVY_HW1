@@ -12,7 +12,7 @@ public class Game {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int GameID;
 
-    private String PlayerID;
+    private String playerID;
 
     private Timestamp DateStarted;
 
@@ -26,7 +26,7 @@ public class Game {
         return GameID;
     }
 
-    public String getPlayerID() { return PlayerID; }
+    public String getPlayerID() { return playerID; }
 
     public Timestamp getDateStarted() {
         return DateStarted;
@@ -48,7 +48,7 @@ public class Game {
         GameID = gameID;
     }
 
-    public void setPlayerID(String playerID) { PlayerID = playerID; }
+    public void setPlayerID(String playerID) { this.playerID = playerID; }
 
     public void setDateStarted(Timestamp dateStarted) {
         DateStarted = dateStarted;
@@ -66,10 +66,4 @@ public class Game {
         Outcome = outcome;
     }
 
-    public Game(String playerID, Timestamp dateStarted, String playerWord, String computerWord) {
-        PlayerID = playerID;
-        DateStarted = dateStarted;
-        PlayerWord = playerWord;
-        ComputerWord = computerWord;
-    }
 }

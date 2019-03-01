@@ -50,4 +50,16 @@ public class PostsController {
             }
         }
     }
+
+    @RequestMapping(value = "/GameLog", method = RequestMethod.GET)
+    public String getLog(Model model) {
+        model.addAttribute("post", new Post());
+        return "index";
+    }
+
+    @RequestMapping(value = "/GameLog", method = RequestMethod.POST)
+    public String postLog(@ModelAttribute("post") Post post) {
+        return "GameLog";
+    }
+
 }

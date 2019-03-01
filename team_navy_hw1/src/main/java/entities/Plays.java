@@ -4,12 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Plays {
+public class Plays implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int GameID;
+    private int gameID;
 
     private int TurnNumber;
 
@@ -20,7 +20,7 @@ public class Plays {
     private String ComputerGuess;
 
     public int getGameID() {
-        return GameID;
+        return gameID;
     }
 
     public int getTurnNumber() {
@@ -40,7 +40,7 @@ public class Plays {
     }
 
     public void setGameID(int gameID) {
-        GameID = gameID;
+        this.gameID = gameID;
     }
 
     public void setTurnNumber(int turnNumber) {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Jotto</title>
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>    
 	<div class="padding-all">
@@ -13,9 +13,10 @@
         <div class="design-w3l">
             <div class="mail-form-agile">
                 <input type="submit" value="Start New Game" />
-                <a href = "GameLog.html">
+                <form action="#" th:action="@{/GameLog}" th:object="${post}" method="post">
+                        <input type="hidden" value=${post.games} th:field="*{games}" />
                         <input type="submit" value="View Records" class="padding"/>
-                </a>
+                </form>
             </div>
         </div>
     </div>
