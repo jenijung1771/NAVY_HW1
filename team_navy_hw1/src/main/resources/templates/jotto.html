@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>game</title>
+</head>
+<body>
+<h1>Guest guess words</h1>
+<!--/*@thymesVar id="userInfo" type=""*/-->
+<form action="#" th:action="@{/jottogame}" th:object="${Guestword}" method="post">
+  Use input word:  <input type="text" th:field="*{guessword}" />
+    <input type="submit" value="submit"/>
+</form>
+</body>
+</html>
