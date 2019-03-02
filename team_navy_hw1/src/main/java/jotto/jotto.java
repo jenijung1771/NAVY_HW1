@@ -18,7 +18,7 @@ public class jotto {
         int comp =0;
         ArrayList<String> wordlist = new ArrayList<String>();
         File file;
-        file = new File("src/main/java/words.txt");////put your own url
+        file = new File("../team_navy_hw1/src/main/java/words.txt");////put your own url
         BufferedReader br = new BufferedReader(new FileReader(file));
         String st;
         while ((st = br.readLine()) != null) {
@@ -154,7 +154,7 @@ public class jotto {
 
     public static int validWord( String words) throws IOException {
         ArrayList<String> wordlist = new ArrayList<String>();
-        File file = new File("src/main/java/words.txt");//put your own url
+        File file = new File(../team_navy_hw1/"src/main/java/words.txt");//put your own url
         BufferedReader br = new BufferedReader(new FileReader(file));
         String st;
         while ((st = br.readLine()) != null) {
