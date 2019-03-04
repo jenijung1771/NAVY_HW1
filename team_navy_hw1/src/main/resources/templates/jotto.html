@@ -13,11 +13,11 @@
         </div>
         <div class="design-w3l">
             <div class="mail-form-agile">
-                <p>Guest guess words</p>
+                <h2>To begin, input a 5-letter word.</h2>
                 <!--/*@thymesVar id="userInfo" type=""*/-->
                 <form action="#" th:action="@{/jottogame}" th:object="${Guestword}" method="post">
-                  Use input word:  <input type="text" th:field="*{guessword}" />
-                    <input type="submit" value="submit"/>
+                    <input type="text" th:field="*{guessword}" class="padding"  placeholder = "Guess a 5-letter word..." maxlength="5"/>
+                    <input type="submit" value="enter"/>
                 </form>
             </div>
         </div>

@@ -5,17 +5,22 @@
     <title>Jotto</title>
     <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
-<body>    
+<body>
 	<div class="padding-all">
         <div class="header">
             <h1>JOTTO</h1>
         </div>
+       
         <div class="design-w3l">
+             
+    
             <div class="mail-form-agile">
+                <h2 class="padding">Welcome, </h2>
+                <h2><!--TODO: Display username--></h2>
                 <form action="#" th:action="@{/game}" th:object="${post}" method="post">
                     <input type="submit" value="Start New Game" />
                 </form>
-                <form action="#" th:action="@{/GameLog}" th:object="${post}" method="post">
+                <form action="#" th:action="@{/GameLog}" th:object="${post}" method="post" class="padding">
                     <input type="hidden" value=${post.games} th:field="*{games}" />
                     <input type="submit" value="View Records" class="padding"/>
                 </form>
