@@ -4,35 +4,30 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-import entities.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import  entities.UserForm;
+
 
 
 @Controller
-@EnableAutoConfiguration
+
 public class JottoController {
-
-    @Autowired
-    private GameRepository gameRepository;
-
-    @Autowired
-    private PlaysRepository playsRepository;
-
     //ends all the symbols
 
-    @RequestMapping(value = "/game", method = RequestMethod.GET)
-    public String jotto(@RequestParam(name="username") String username, ModelMap map) throws IOException {
+    @RequestMapping(value = "/game", method={RequestMethod.POST,RequestMethod.GET})
+    public String jotto(ModelMap map) throws IOException {
         File file;
         file = new File("words.txt");////put your own url
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -47,7 +42,6 @@ public class JottoController {
         br.close();
         //单个数据
         UserForm user = new UserForm();
-        user.setUsername(username);
         map.put("Guestword", user);
         return "jotto";
     }
@@ -56,11 +50,9 @@ public class JottoController {
     public String add(ModelMap model, @ModelAttribute UserForm user) throws IOException {
 
         String Userword=user.getguessword();
-        String username = user.getUsername();
         int valid=validWord(Userword);
         if (valid ==0){
              user = new UserForm();
-             user.setUsername(username);
             model.put("Guestword", user);
             return "jotto";
         }
@@ -85,38 +77,15 @@ public class JottoController {
             bufw.close();
             br.close();
             UserForm user2 = new UserForm();
-
-            // create game
-            Game game = new Game();
-            game.setPlayerID(username);
-            game.setDateStarted(new Timestamp(System.currentTimeMillis()));
-            game.setPlayerWord(Userword);
-            game.setComputerWord(compWord);
-            int gameID = gameRepository.save(game).getGameID();
-            // game stored in database
-
-            user2.setUsername(username);
-            user2.setGameID(gameID);
-            user2.setTurnNum(1);
-            if (!gameRepository.findByGameID(user.getGameID()).isEmpty()) {
-                model.put("username", username);
-                model.put("gameID", gameID);
-                model.put("turnNum", 1);
-            }
-
             String newGuess="please guess word";
             model.put("userword",Userword);
             model.put("word",newGuess);
             model.put("Guestword", user2);
-
             return "JottoGame";}
     }
     @RequestMapping(value="/Gottogame",method={RequestMethod.POST,RequestMethod.GET})//
     public String jottogame(ModelMap model, @ModelAttribute UserForm user) throws IOException {
         String Userword=user.getguessword();
-        String username = user.getUsername();
-        int gameID = user.getGameID();
-        int turnNum = user.getTurnNum();
 // all the list we need
         File file;
         file = new File("choosewordList.txt");
@@ -139,23 +108,25 @@ public class JottoController {
         comprightLetter=BuRead1("comprightLetter.txt");// get the number of letter computer is right
         userrightLetter=BuRead1("userrightLetter.txt");// get the list of number user right
         int valid=validWord(Userword);
+        //ArrayList<ArrayList> sepeartletterUser = new ArrayList<ArrayList>();
+        ArrayList<ArrayList> sepeartletterComputer = new ArrayList<ArrayList>();
+        //for (int i=0;i<userGuessWordList.size();i++){
+        //      sepeartletterUser.add(castwordsTochar(userGuessWordList.get(i))); }
+        for (int i=0;i<compGuessWordList.size();i++){
+            sepeartletterComputer.add(castwordsTochar(compGuessWordList.get(i))); }
+
         if (valid ==0){//invalid word, no track
             String invalid="Invalid word";
-
             user = new UserForm();
-
-            user.setUsername(username);
-            user.setGameID(gameID);
-            user.setTurnNum(turnNum);
-
             model.put("userword",userWordO);
             model.put("userguessword", userGuessWordList);
             model.put("numberuser",userrightLetter);
-            model.put("compguessword", compGuessWordList);
+            model.put("compguessword", sepeartletterComputer);
             model.put("numbercomp",comprightLetter);
             model.put("Guestword", user);
             model.put("word",invalid);
-            return "JottoGame";
+
+            return "jottoGame";
         }
         //load all the file for game compare
 
@@ -211,35 +182,21 @@ public class JottoController {
             }}
         BuWriter1("wordlist.txt",wordlist);
 
-            // create turn
-            Plays turn = new Plays();
-            turn.setTurnNumber(turnNum);
-            turn.setGameID(gameID);
-            turn.setPlayerID(username);
-            turn.setPlayerGuess(Userword);
-            turn.setComputerGuess(compWord);
-            playsRepository.save(turn);
-            // turn stored in database
-
 
         user = new UserForm();
-
-        user.setUsername(username);
-        user.setGameID(gameID);
-        user.setTurnNum(turnNum + 1);
-
         String newGuess="please guess word";
 
         model.put("userword",userWordO);
         model.put("userguessword", userGuessWordList);
-        model.put("numberuser",userrightLetter);
-        model.put("compguessword", compGuessWordList);
-        model.put("numbercomp",comprightLetter);
 
+
+
+        model.put("numberuser",userrightLetter);
+        model.put("compguessword", sepeartletterComputer);
+        model.put("numbercomp",comprightLetter);
         model.put("word",newGuess);
         model.put("Guestword", user);
-
-        return "JottoGame";
+        return "jottoGame";
     }
 
     public static int guessWord(String guess1, String compare, ArrayList<Character> rightChar) {
@@ -338,7 +295,14 @@ public class JottoController {
         }
         return chara;
     }
-
+    public static ArrayList<Character> castwordsTochar(String words){
+        ArrayList<Character> chara = new ArrayList<Character>();
+        for (int i=0;i<words.length();i++){
+            char x=words.charAt(i);
+            chara.add(x);
+        }
+        return chara;
+    }
 
 
 
