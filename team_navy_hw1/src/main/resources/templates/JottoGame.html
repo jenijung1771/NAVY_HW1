@@ -13,16 +13,44 @@
         </div>
         <div class="design-w3l">
             <div class="mail-form-agile">
-                <p th:text="${word}"></p>
-                <form action="#" th:action="@{/Gottogame}" th:object="${Guestword}" method="post">
-                    User guess word:<input type="text" th:field="*{guessword}" />
-                    <input type="submit" value="submit"/>
-                    the word you type:  <p th:text="${userword}"></p>
-                    the word you  guess:<p th:text="${userguessword}"></p>
-                    the number of letter you guess right:<p th:text="${numberuser}"></p>
-                    the word computer guess <p th:text="${compguessword}"></p>
-                    the number of letter computer guess right:<p th:text="${numbercomp}"></p>
-                </form>
+                <p th:text="${word}" class="bold"></p>
+                <div>
+                    <form action="#" th:action="@{/Gottogame}" th:object="${Guestword}" method="post">
+                        <input type="text" th:field="*{guessword}" placeholder = "Guess a 5-letter word..." maxlength="5" class="padding"/>
+                        <input type="submit" value="enter"/>
+                        <br>
+                        <div class="bold">
+
+                        </div>
+                        <table class="left">
+                            <tr>
+                                <th><p>Your guess</p></th>
+                                <th><p>Correct letters</p></th>
+                            </tr>
+                            <tr class="bold">
+                                <th><p th:text="${userguessword}"></p></th> <!--TODO: MUST BE LISTS!!-->
+                                <th><p th:text="${numberuser}"></p></th>
+                            </tr>
+                        </table>
+                        <table class="right">
+                            <tr>
+                                <th><p>CPU's guess</p></th>
+                                <th><p>Correct letters</p></th>
+                            </tr>
+                            <tr class="bold">
+                                <th><p th:text="${compguessword}"></p></th>
+                                <th><p th:text="${numbercomp}"></p></th>
+                            </tr>
+                        </table>
+                        <!--
+                        the word you type:  <p th:text="${userword}"></p>
+                        the word you  guess:<p th:text="${userguessword}"></p>
+                        the number of letter you guess right:<p th:text="${numberuser}"></p>
+                        the word computer guess <p th:text="${compguessword}"></p>
+                        the number of letter computer guess right:<p th:text="${numbercomp}"></p>
+                        -->
+                    </form>
+                </div>
             </div>
         </div>
     </div>

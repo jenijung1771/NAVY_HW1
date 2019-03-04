@@ -11,9 +11,9 @@
         <div class="header">
             <h1>Past Game Logs</h1>
         </div>
-        <div class="design-w3l">
+        <div class="design-w3l" id="wide">
             <div class="mail-form-agile">
-                <ul>
+                <ul class="padding">
                     <li><p>Game [gameID]: [Player name] [Date played]</p></li><!--example; TODO: delete-->
                     <li th:each="game: ${post.games}" th:text="${game.gameID}">
                         <!--TODO: make it like the example + hyperlink??(+with game data?)-->

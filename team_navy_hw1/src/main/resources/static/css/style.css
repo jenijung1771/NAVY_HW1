@@ -24,14 +24,19 @@ a{text-decoration:none;}
 .vertical-base{	vertical-align:baseline;}/* vertical align baseline */
 .vertical-top{	vertical-align:top;}/* vertical align top */
 nav.vertical ul li{	display:block;}/* vertical menu */
-nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+
+nav.horizontal ul li{
+display: inline-block;
+    float:left;
+    font-size:120%
+}/* horizontal menu */
+
 img{max-width:100%;}
 /*end reset*/
 /****-----start-body----****/
 body{
 text-align: center;
-background-color: #303035;
-<!--background: url("../images/1.jpg") 0px 0px no-repeat;-->
+background: url("../images/bg.jpg") 0px 0px no-repeat;
 background-size:cover;
 background-attachment: fixed;
 }
@@ -69,8 +74,12 @@ margin:0 auto;
 
 
 .design-w3l{
-width:46%;
-margin:0 auto;
+width:36%;
+margin: auto;
+}
+
+#wide{
+    width:50%;
 }
 
 .mail-form-agile {
@@ -80,6 +89,45 @@ margin:0 auto;
     background: rgba(23, 218, 218, 0.18);
     color: #fff;
 	margin:0 auto;
+    overflow: auto;
+    font-family: "Asap-Regular";
+}
+.mail-form-agile h2{
+    font-size:30px;
+}
+.mail-form-agile h3{
+    font-size:20px;
+}
+
+tr.bold p{
+    font-family: "Audiowide-Regular";
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+div.bold p{
+    font-family: "Audiowide-Regular";
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+table, th, td{
+    border: 1px solid white;
+}
+th p{
+    margin:5px;
+}
+table.left{
+    float:left;
+    margin:20px 5px 20px 0;
+}
+table.right{
+    float:right;
+    margin:20px 0px 20px 5px;;
+}
+
+#fix{
+    transform: translateX(-50%, -50%);
 }
 
 .padding {
@@ -87,7 +135,7 @@ margin: 20px 0 30px;
 }
 .mail-form-agile input[type="text"], .mail-form-agile input[type="password"] {
 padding: 13px 10px;
-width: 92.5%;
+width: 52.5%;
 font-size: 16px;
 outline: none;
 background:transparent;
@@ -124,6 +172,16 @@ transition-duration: 0.9s;
  -webkit-transition-duration: 0.9s;
  transition-duration: 0.9s;
  background:rgba(91, 157, 214, 0.76);
+}
+
+.customCB{
+    -webkit-appearance: none;
+    background-color: black;
+    border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	display: inline-block;
+	position: relative;
 }
 
 .footer{
