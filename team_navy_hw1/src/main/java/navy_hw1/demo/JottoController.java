@@ -76,6 +76,14 @@ public class JottoController {
             bufw.flush();
             bufw.close();
             br.close();
+            fw = new FileWriter("comprightLetterC.txt");// the list of word choose by computer or user
+            bufw = new BufferedWriter(fw);
+            bufw.write("");
+            bufw.flush();
+            bufw.close();
+
+
+
             UserForm user2 = new UserForm();
             String newGuess="please guess word";
             model.put("userword",Userword);
@@ -188,6 +196,7 @@ public class JottoController {
 
         model.put("userword",userWordO);
         model.put("userguessword", userGuessWordList);
+        sepeartletterComputer.add(castwordsTochar(compGuessWordList.get(compGuessWordList.size()-1)));
 
 
 
