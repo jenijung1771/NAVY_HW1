@@ -22,7 +22,6 @@ import javax.persistence.*;
 })
 public class Player {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private String PlayerID;
 
     private String PlayerPassword;

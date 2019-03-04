@@ -12,7 +12,10 @@
         </div>
         <div class="design-w3l">
             <div class="mail-form-agile">
-                <input type="submit" value="Start New Game" />
+                <form action="#" th:action="@{/game}" method="get">
+                        <input type="hidden" name="username" th:value="${post.username}" />
+                        <input type="submit" value="Start New Game" />
+                </form>
                 <form action="#" th:action="@{/GameLog}" th:object="${post}" method="post">
                         <input type="hidden" value=${post.games} th:field="*{games}" />
                         <input type="submit" value="View Records" class="padding"/>

@@ -11,4 +11,5 @@ import java.util.List;
 
 public interface GameRepository extends CrudRepository<Game, Integer> {
     List<Game> findByPlayerID(String playerID);
+    List<Game> findByGameID(int gameID);
 }

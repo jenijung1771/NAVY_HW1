@@ -9,11 +9,15 @@
 <p th:text="${word}"></p>
 <form action="#" th:action="@{/Gottogame}" th:object="${Guestword}" method="post">
     User guess word:<input type="text" th:field="*{guessword}" />
+    <input type="hidden" th:field="*{username}" />
+    <input type="hidden" th:field="*{gameID}" />
+    <input type="hidden" th:field="*{turnNum}" />
     <input type="submit" value="submit"/>
   the word you type:  <p th:text="${userword}"></p>
     the word you  guess:<p th:text="${userguessword}"></p>
     the number of letter you guess right:<p th:text="${numberuser}"></p>
     the word computer guess <p th:text="${compguessword}"></p>
     the number of letter computer guess right:<p th:text="${numbercomp}"></p>
+</form>
 </body>
 </html>

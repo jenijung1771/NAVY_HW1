@@ -10,5 +10,5 @@ import java.util.List;
 // CRUD refers Create, Read, Update, Delete
 
 public interface PlaysRepository extends CrudRepository<Plays, Integer> {
-    List<Plays> findByGameID(int gameID);
+
 }

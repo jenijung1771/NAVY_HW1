@@ -1,16 +1,14 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity // This tells Hibernate to make a table out of this class
+@TableGenerator(name = "idgen")
 public class Game {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private int GameID;
+    @GeneratedValue(strategy=GenerationType.TABLE, generator = "idgen")
+    private int gameID;
 
     private String playerID;
 
@@ -23,7 +21,7 @@ public class Game {
     private String Outcome;
 
     public int getGameID() {
-        return GameID;
+        return gameID;
     }
 
     public String getPlayerID() { return playerID; }
@@ -45,7 +43,7 @@ public class Game {
     }
 
     public void setGameID(int gameID) {
-        GameID = gameID;
+        this.gameID = gameID;
     }
 
     public void setPlayerID(String playerID) { this.playerID = playerID; }

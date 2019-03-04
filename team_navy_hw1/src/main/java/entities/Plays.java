@@ -1,17 +1,12 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Plays {
-    @Id
-    private int gameID;
-
-    private int TurnNumber;
+public class Plays implements Serializable {
+    @EmbeddedId
+    private PlaysID playsID;
 
     private String PlayerID;
 
@@ -19,13 +14,9 @@ public class Plays {
 
     private String ComputerGuess;
 
-    public int getGameID() {
-        return gameID;
-    }
+    public int getGameID() { return playsID.getGameID(); }
 
-    public int getTurnNumber() {
-        return TurnNumber;
-    }
+    public int getTurnNumber() { return playsID.getTurnNumber(); }
 
     public String getPlayerID() {
         return PlayerID;
@@ -39,13 +30,9 @@ public class Plays {
         return ComputerGuess;
     }
 
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
-    }
+    public void setGameID(int gameID) { playsID.setGameID(gameID); }
 
-    public void setTurnNumber(int turnNumber) {
-        TurnNumber = turnNumber;
-    }
+    public void setTurnNumber(int turnNumber) { playsID.setTurnNumber(turnNumber); }
 
     public void setPlayerID(String playerID) {
         PlayerID = playerID;
@@ -57,5 +44,9 @@ public class Plays {
 
     public void setComputerGuess(String computerGuess) {
         ComputerGuess = computerGuess;
+    }
+
+    public Plays() {
+        playsID = new PlaysID();
     }
 }
