@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Jotto - Log In</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>    
 	<div class="padding-all">
@@ -13,9 +13,9 @@
         <div class="design-w3l">
             <div class="mail-form-agile">
                 <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
-                    <input type="text" name="name" placeholder="Username" required="" th:field="*{username}" />
+                    <input type="text" name="name" placeholder="Username" required="" th:field="*{username}" maxlength="16"/><br>
                     <input type="password" name="password" placeholder="Password" required="" th:field="*{password}" class="padding"/>
-                    <p>Create a new account:<input type="checkbox" th:field="*{createNew}"/></p>
+                    <h3>Create a new account: <input type="checkbox" th:field="*{createNew}" class="padding"/></h3>
                     <input type="submit" value="Submit" />
                 </form>
             </div>

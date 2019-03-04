@@ -4,23 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Jotto-Game Logs</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-    <div class="header">
-        <h1>Past Game Logs</h1>
-    </div>
-    <div class="design-w3l">
-        <div class="mail-form-agile">
-            <ul>
-                <li><p>Game [gameID]: [Player name] [Date played]</p></li><!--example; TODO: delete-->
-                <li th:each="game: ${post.games}" th:text="${game.gameID}">
-                    <!--TODO: make it like the example + hyperlink??(+with game data?)-->
-                </li>
-            </ul>
-            <a href = "index.html">
-                <input type="submit" value="Back to main menu">
-            </a>
+    <div class="padding-all">
+        <div class="header">
+            <h1>Past Game Logs</h1>
+        </div>
+        <div class="design-w3l" id="wide">
+            <div class="mail-form-agile">
+                <ul class="padding">
+                    <li><p>Game [gameID]: [Player name] [Date played]</p></li><!--example; TODO: delete-->
+                    <li th:each="game: ${post.games}" th:text="${game.gameID}">
+                        <!--TODO: make it like the example + hyperlink??(+with game data?)-->
+                    </li>
+                </ul>
+                <a href = "index.html">
+                    <input type="submit" value="Back to main menu">
+                </a>
+            </div>
         </div>
     </div>
 </body>
