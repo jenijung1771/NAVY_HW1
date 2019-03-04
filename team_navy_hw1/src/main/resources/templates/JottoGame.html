@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Jotto</title>
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
     <div class="padding-all">
@@ -17,6 +17,9 @@
                 <div>
                     <form action="#" th:action="@{/Gottogame}" th:object="${Guestword}" method="post">
                         <input type="text" th:field="*{guessword}" placeholder = "Guess a 5-letter word..." maxlength="5" class="padding"/>
+                        <input type="hidden" th:field="*{username}" />
+                        <input type="hidden" th:field="*{gameID}" />
+                        <input type="hidden" th:field="*{turnNum}" />
                         <input type="submit" value="enter"/>
                         <br>
                         <div class="letterlist"><!--TODO: CHANGE COLORS ON CLICK-->

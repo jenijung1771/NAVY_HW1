@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Jotto</title>
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
     <div class="padding-all">
@@ -17,6 +17,7 @@
                 <!--/*@thymesVar id="userInfo" type=""*/-->
                 <form action="#" th:action="@{/jottogame}" th:object="${Guestword}" method="post">
                     <input type="text" th:field="*{guessword}" class="padding"  placeholder = "Guess a 5-letter word..." maxlength="5"/>
+                    <input type="hidden" th:value="${Guestword.username}" th:field="*{username}" />
                     <input type="submit" value="enter"/>
                 </form>
             </div>

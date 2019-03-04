@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Jotto</title>
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
 	<div class="padding-all">
@@ -17,7 +17,8 @@
             <div class="mail-form-agile">
                 <h2 class="padding">Welcome, </h2>
                 <h2><!--TODO: Display username--></h2>
-                <form action="#" th:action="@{/game}" th:object="${post}" method="post">
+                <form action="#" th:action="@{/game}" method="get">
+                    <input type="hidden" name="username" th:value="${post.username}" />
                     <input type="submit" value="Start New Game" />
                 </form>
                 <form action="#" th:action="@{/GameLog}" th:object="${post}" method="post" class="padding">
