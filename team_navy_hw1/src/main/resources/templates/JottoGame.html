@@ -3,17 +3,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>JottoGame</title>
+    <title>Jotto</title>
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-<p th:text="${word}"></p>
-<form action="#" th:action="@{/Gottogame}" th:object="${Guestword}" method="post">
-    User guess word:<input type="text" th:field="*{guessword}" />
-    <input type="submit" value="submit"/>
-  the word you type:  <p th:text="${userword}"></p>
-    the word you  guess:<p th:text="${userguessword}"></p>
-    the number of letter you guess right:<p th:text="${numberuser}"></p>
-    the word computer guess <p th:text="${compguessword}"></p>
-    the number of letter computer guess right:<p th:text="${numbercomp}"></p>
+    <div class="padding-all">
+        <div class="header">
+            <h1>JOTTO</h1>
+        </div>
+        <div class="design-w3l">
+            <div class="mail-form-agile">
+                <p th:text="${word}"></p>
+                <form action="#" th:action="@{/Gottogame}" th:object="${Guestword}" method="post">
+                    User guess word:<input type="text" th:field="*{guessword}" />
+                    <input type="submit" value="submit"/>
+                    the word you type:  <p th:text="${userword}"></p>
+                    the word you  guess:<p th:text="${userguessword}"></p>
+                    the number of letter you guess right:<p th:text="${numberuser}"></p>
+                    the word computer guess <p th:text="${compguessword}"></p>
+                    the number of letter computer guess right:<p th:text="${numbercomp}"></p>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
