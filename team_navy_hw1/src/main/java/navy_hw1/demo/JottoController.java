@@ -26,7 +26,7 @@ import  entities.UserForm;
 public class JottoController {
     //ends all the symbols
 
-    @RequestMapping(value = "/game", method = RequestMethod.GET)
+    @RequestMapping(value = "/game", method={RequestMethod.POST,RequestMethod.GET})
     public String jotto(ModelMap map) throws IOException {
         File file;
         file = new File("words.txt");////put your own url
