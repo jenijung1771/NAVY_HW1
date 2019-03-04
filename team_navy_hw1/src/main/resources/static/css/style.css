@@ -91,6 +91,7 @@ margin: auto;
 	margin:0 auto;
     overflow: auto;
     font-family: "Asap-Regular";
+    
 }
 .mail-form-agile h2{
     font-size:30px;
@@ -105,10 +106,15 @@ tr.bold p{
     text-transform: uppercase;
 }
 
-div.bold p{
+div.letterlist span{
     font-family: "Audiowide-Regular";
-    font-size: 20px;
+    font-size: 30px;
     text-transform: uppercase;
+    
+}
+div.letterlist span:hover {
+ transition-duration: 0.3s;
+ background:rgba(91, 157, 214, 0.76);
 }
 
 table, th, td{
@@ -125,9 +131,16 @@ table.right{
     float:right;
     margin:20px 0px 20px 5px;;
 }
+table.center{
+    margin-left: auto;
+    margin-right: auto;
+}
 
-#fix{
-    transform: translateX(-50%, -50%);
+span.green{
+    color:green;
+}
+span.red{
+    color:red;
 }
 
 .padding {
