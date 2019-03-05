@@ -7,7 +7,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
-<body>
+<body onload="loadColor()">
     <div class="padding-all">
         <div class="header">
             <h1>JOTTO</h1>
@@ -22,7 +22,11 @@
                         <input type="hidden" th:field="*{turnNum}" />
                         <input type="submit" value="enter"/>
                         <br>
-                        <div class="letterlist"><!--TODO: CHANGE COLORS ON CLICK-->
+                        <!--<div class="letterlist" id="letlist" onload="function (){
+                            var $letter = $("span.let");
+                            $letter.addClass(localStorage.getItem($letter.id));
+                        }
+                        ">
                             <span class="let">a</span>
                             <span class="let">b</span>
                             <span class="let">c</span>
@@ -61,6 +65,7 @@
                                         index=0;
                                     }
                                     $elm.addClass(classes[index]);
+                                    localStorage.setItem($elm.id, $elm.className);
                                 }
                                 $(function () {
                                     var $letter = $("span.let");
@@ -69,9 +74,74 @@
                                         changeColor($(this), classes);
                                     })
                                 });
-
                             </script>
-                        </div>
+                        </div>-->
+                        <div class="letterlist" id="letlist" >
+                        <span class="white" id="L1">a</span>
+                        <span class="white" id="L2">b</span>
+                        <span class="white" id="L3">c</span>
+                        <span class="white" id="L4">d</span>
+                        <span class="white" id="L5">e</span>
+                        <span class="white" id="L6">f</span>
+                        <span class="white" id="L7">g</span>
+                        <span class="white" id="L8">h</span>
+                        <span class="white" id="L9">i</span>
+                        <span class="white" id="L10">j</span>
+                        <span class="white" id="L11">k</span>
+                        <span class="white" id="L12">l</span>
+                        <span class="white" id="L13">m</span>
+                        <span class="white" id="L14">n</span>
+                        <span class="white" id="L15">o</span>
+                        <span class="white" id="L16">p</span>
+                        <span class="white" id="L17">q</span>
+                        <span class="white" id="L18">r</span>
+                        <span class="white" id="L19">s</span>
+                        <span class="white" id="L20">t</span>
+                        <span class="white" id="L21">u</span>
+                        <span class="white" id="L22">v</span>
+                        <span class="white" id="L23">w</span>
+                        <span class="white" id="L24">x</span>
+                        <span class="white" id="L25">y</span>
+                        <span class="white" id="L26">z</span>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+                        <script type="text/javascript">
+                            function changeColor($elm, classes){
+                                var className = $elm.attr('class');
+                                var index = $.inArray(className, classes);
+
+                                $elm.removeClass(className);
+                                index++;
+                                if (index===classes.length){
+                                    index=0;
+                                }
+                                $elm.addClass(classes[index]);
+                                localStorage.setItem($elm.attr('id'),classes[index]);
+                            }
+                            function loadColor(){
+                                var i;
+                                for (i=1; i<27; i++) {
+                                    var elem = $(document.getElementById('L'+i));
+                                    var localStore = localStorage.getItem(elem.attr('id'));
+                                    //window.alert(i+"before"+elem.attr('class'));
+                                    //$(elem).removeClass(elem.attr('class'));
+                                    $(elem).addClass(localStore);
+                                    //window.alert(i+" after "+ localStore);
+                                }
+                            }
+
+                            $(function () {
+                                var classes=["white", "green", "red"];
+                                var i;
+                                for (i=1; i<27; i++){
+                                    var $letter = $(document.getElementById('L'+i));
+                                    $letter.on("click", function () {
+                                        changeColor($(this), classes);
+                                    })
+                                }
+
+                            });
+                        </script>
+                </div>
                         <p>Your word:</p>
                         <p th:text="${userword}" class="bold2"></p>
                         <div class="listContainer">
@@ -100,7 +170,7 @@
                             <ul>
                                 <li>Correct letters</li>
                                 <li th:each="nc: ${numbercomp}" class="bold">
-                                    <span th:text="${nu}"></span>
+                                    <span th:text="${nc}"></span>
                                 </li>
                             </ul>
                         </div>

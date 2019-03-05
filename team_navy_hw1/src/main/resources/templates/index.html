@@ -12,8 +12,7 @@
         </div>
         <div class="design-w3l">
             <div class="mail-form-agile">
-                <h2 class="padding">Welcome, </h2>
-                <h2 th:value="${post.username}"></h2>
+                <h2 th:text="${post.username}" class="padding">, Welcome! </h2>
                 <form action="#" th:action="@{/game}" method="get">
                     <input type="hidden" name="username" th:value="${post.username}" />
                     <input type="submit" value="Start New Game" />
