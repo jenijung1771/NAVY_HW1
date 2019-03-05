@@ -22,7 +22,7 @@
                         <input type="hidden" th:field="*{turnNum}" />
                         <input type="submit" value="enter"/>
                         <br>
-                        <!--<p class="red" th:text="*{error}"></p>-->
+                        <p class="red" th:text="${error}"></p>
                         <!--<div class="letterlist" id="letlist" onload="function (){
                             var $letter = $("span.let");
                             $letter.addClass(localStorage.getItem($letter.id));
