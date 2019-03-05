@@ -13,8 +13,7 @@
             <h1>JOTTO</h1>
         </div>
         <div class="design-w3l">
-            <div class="mail-form-agile"">
-                <p th:text="${userword}" class="bold"></p>
+            <div class="mail-form-agile">
                 <div>
                     <form action="#" th:action="@{/Gottogame}" th:object="${Guestword}" method="post">
                         <input type="text" th:field="*{guessword}" placeholder = "Guess a 5-letter word..." maxlength="5" class="padding"/>
@@ -79,11 +78,7 @@
                             <ul>
                                 <li>Your Guess</li>
                                 <li th:each="word:${userguessword}" class="bold">
-                                    <span th:text="${word.get(0)}"></span>
-                                    <span th:text="${word.get(1)}"></span>
-                                    <span th:text="${word.get(2)}"></span>
-                                    <span th:text="${word.get(3)}"></span>
-                                    <span th:text="${word.get(4)}"></span>
+                                    <span th:text="${word}"></span>
                                 </li>
                             </ul>
                             <ul>
