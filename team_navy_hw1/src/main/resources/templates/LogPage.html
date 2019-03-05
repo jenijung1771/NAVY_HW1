@@ -20,9 +20,14 @@
                         <th><p>Computer's guessed words</p></th>
                         <th><p>Correct letters</p></th>
                     </tr>
-                    <tr>
-                        <!--TODO: maybe change to list?? idk.-->
-                    </tr>
+                    <th:block th:each="turn : ${details}">
+                        <tr>
+                            <td th:text="${turn.PlayerGuess}"></td>
+                            <td th:text="${turn.PlayerLettersCorrect}" ></td>
+                            <td th:text="${turn.ComputerGuess}" ></td>
+                            <td th:text="${turn.ComputerLettersCorrect}" ></td>
+                        </tr>
+                    </th:block>
                 </table>
                 <a href = "GameLog.html">
                     <input type="submit" value="Back" class="padding">

@@ -1,12 +1,13 @@
 package navy_hw1.demo;
 
-import entities.GameRepository;
+import entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import entities.PlayerRepository;
+
+import java.util.List;
 
 @Controller
 @EnableAutoConfiguration
@@ -16,6 +17,9 @@ public class PostsController {
 
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private PlaysRepository playsRepository;
 
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
     public String newPost(Model model) {
@@ -60,6 +64,13 @@ public class PostsController {
     @RequestMapping(value = "/GameLog", method = RequestMethod.POST)
     public String postLog(@ModelAttribute("post") Post post) {
         return "GameLog";
+    }
+
+    @RequestMapping(value = "/ViewDetails", method = RequestMethod.GET)
+    public String getDetails(@RequestParam(name="gameid") int gameID, Model model) {
+        List<Plays> turns = playsRepository.findByPlaysIDGameID(gameID);
+        model.addAttribute("details", turns);
+        return "LogPage";
     }
 
 }

@@ -13,12 +13,25 @@
         </div>
         <div class="design-w3l" id="wide">
             <div class="mail-form-agile">
-                <ul class="padding">
-                    <li><p>Game [gameID]: [Player name] [Date played]</p></li><!--example; TODO: delete-->
-                    <li th:each="game: ${post.games}" th:text="${game.gameID}">
-                        <!--TODO: make it like the example + hyperlink??(+with game data?)-->
-                    </li>
-                </ul>
+                <table>
+                    <tr>
+                        <td text="GameID" ></td>
+                        <td text="Date Started" ></td>
+                        <td text="See Details" ></td>
+                    </tr>
+                    <th:block th:each="game: ${post.games}">
+                        <tr>
+                            <td th:text="${game.gameID}" ></td>
+                            <td th:text="${game.DateStarted}" ></td>
+                            <td>
+                                <form action="#" th:action="@{/ViewDetails}" method="get" class="padding">
+                                    <input type="hidden" name="gameid" th:value="${game.gameID}" >
+                                    <input type="submit" value="View" class="padding">
+                                </form>
+                            </td>
+                        </tr>
+                    </th:block>
+                </table>
                 <a href = "index.html">
                     <input type="submit" value="Back to main menu">
                 </a>
