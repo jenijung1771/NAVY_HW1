@@ -163,7 +163,7 @@ public class JottoController {
             model.put("compguessword", sepeartletterComputer);
             model.put("numbercomp",comprightLetter);
             model.put("Guestword", user);
-            model.put("word",invalid);
+            model.put("error",invalid);
             return "JottoGame";
         }
         //load all the file for game compare

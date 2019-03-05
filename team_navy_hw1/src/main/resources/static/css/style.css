@@ -170,6 +170,10 @@ span.red{
     color:red;
     background-color:#800000;
 }
+p.red{
+    color:red;
+    background-color:#800000;
+}
 
 .padding {
 margin: 20px 0 30px;

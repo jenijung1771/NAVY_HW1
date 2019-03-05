@@ -7,15 +7,19 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-<div class="padding-all">
-    <div class="header">
-        <h1>GAME OVER</h1>
-    </div>
-    <div class="design-w3l">
-        <div class="mail-form-agile">
-    <!--/*@thymesVar id="userInfo" type=""*/-->
-    <p th:text="${gameEnd}"></p>
-    <span>the computer's word was: <p th:text="${wordname}"></p></span>
+    <div class="padding-all">
+        <div class="header">
+            <h1>GAME OVER</h1>
+        </div>
+        <div class="design-w3l">
+            <div class="mail-form-agile">
+        <!--/*@thymesVar id="userInfo" type=""*/-->
+        <p th:text="${gameEnd}"></p>
+        <span>the computer's word was: <p th:text="${wordname}" class="padding"></p></span>
+            <a href = "posts">
+                <input type="submit" value="main menu">
+            </a>
+            </div>        
         </div>
     </div>
 </body>

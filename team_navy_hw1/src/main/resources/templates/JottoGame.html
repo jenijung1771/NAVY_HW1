@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Jotto</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" /-->
 </head>
 <body onload="loadColor()">
     <div class="padding-all">
@@ -22,6 +22,7 @@
                         <input type="hidden" th:field="*{turnNum}" />
                         <input type="submit" value="enter"/>
                         <br>
+                        <!--<p class="red" th:text="*{error}"></p>-->
                         <!--<div class="letterlist" id="letlist" onload="function (){
                             var $letter = $("span.let");
                             $letter.addClass(localStorage.getItem($letter.id));
@@ -213,6 +214,9 @@
                         -->
                     </form>
                 </div>
+                <a href = "index.html">
+                    <input type="submit" value="main menu" class="padding">
+                </a>
             </div>
         </div>
     </div>
