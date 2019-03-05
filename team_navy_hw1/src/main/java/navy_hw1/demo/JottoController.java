@@ -139,19 +139,28 @@ public class JottoController {
         comprightLetter=BuRead1("comprightLetter.txt");// get the number of letter computer is right
         userrightLetter=BuRead1("userrightLetter.txt");// get the list of number user right
         int valid=validWord(Userword);
+      //ArrayList<ArrayList> sepeartletterUser = new ArrayList<ArrayList>();
+        ArrayList<ArrayList> sepeartletterComputer = new ArrayList<ArrayList>();
+        //for (int i=0;i<userGuessWordList.size();i++){
+        //      sepeartletterUser.add(castwordsTochar(userGuessWordList.get(i))); }
+        for (int i=0;i<compGuessWordList.size();i++){
+            sepeartletterComputer.add(castwordsTochar(compGuessWordList.get(i))); }
+        ArrayList<Character> userwordscharater = new ArrayList<Character>();
+        userwordscharater=castwordsTochar(userWordO);
+
         if (valid ==0){//invalid word, no track
             String invalid="Invalid word";
-
+          
             user = new UserForm();
 
             user.setUsername(username);
             user.setGameID(gameID);
             user.setTurnNum(turnNum);
 
-            model.put("userword",userWordO);
+            model.put("userword",userwordscharater);
             model.put("userguessword", userGuessWordList);
             model.put("numberuser",userrightLetter);
-            model.put("compguessword", compGuessWordList);
+            model.put("compguessword", sepeartletterComputer);
             model.put("numbercomp",comprightLetter);
             model.put("Guestword", user);
             model.put("word",invalid);
@@ -239,11 +248,13 @@ public class JottoController {
         user.setTurnNum(turnNum + 1);
 
         String newGuess="please guess word";
+      
+        sepeartletterComputer.add(castwordsTochar(compGuessWordList.get(compGuessWordList.size()-1)));
 
-        model.put("userword",userWordO);
+        model.put("userword",userwordscharater);
         model.put("userguessword", userGuessWordList);
         model.put("numberuser",userrightLetter);
-        model.put("compguessword", compGuessWordList);
+        model.put("compguessword", sepeartletterComputer);
         model.put("numbercomp",comprightLetter);
 
         model.put("word",newGuess);
@@ -344,6 +355,14 @@ public class JottoController {
         ArrayList<String> chara = new ArrayList<String>();
         for (int i=0;i<List.size();i++){
             String x=List.get(i).toString();
+            chara.add(x);
+        }
+        return chara;
+    }
+    public static ArrayList<Character> castwordsTochar(String words){
+        ArrayList<Character> chara = new ArrayList<Character>();
+        for (int i=0;i<words.length();i++){
+            char x=words.charAt(i);
             chara.add(x);
         }
         return chara;
