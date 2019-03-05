@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.io.BufferedWriter;
@@ -75,14 +76,14 @@ public class JottoController {
                 wordlist.add(st);}
             int random = (int)(Math.random() * 5683 + 1);
             String compWord=wordlist.get(random);
-            FileWriter fw = new FileWriter("choosewordList.txt");// the list of word choose by computer or user
+            /*FileWriter fw = new FileWriter("choosewordList.txt");// the list of word choose by computer or user
             BufferedWriter bufw = new BufferedWriter(fw);
             bufw.write(Userword);
             bufw.newLine();
             bufw.write(compWord);
             bufw.newLine();
             bufw.flush();
-            bufw.close();
+            bufw.close();*/
             br.close();
             UserForm user2 = new UserForm();
 
@@ -118,12 +119,12 @@ public class JottoController {
         int gameID = user.getGameID();
         int turnNum = user.getTurnNum();
 // all the list we need
-        File file;
-        file = new File("choosewordList.txt");
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String userWordO = br.readLine();
-        String compWordO = br.readLine();
-        br.close();
+        //File file;
+        //file = new File("choosewordList.txt");
+        //BufferedReader br = new BufferedReader(new FileReader(file));
+        String userWordO = gameRepository.findByGameID(gameID).get(0).getPlayerWord();
+        String compWordO = gameRepository.findByGameID(gameID).get(0).getComputerWord();
+        //br.close();
         ArrayList<String> userGuessWordList = new ArrayList<String>();
         ArrayList<String> compGuessWordList = new ArrayList<String>();
         ArrayList<String> userrightLetter = new ArrayList<String>();
@@ -132,12 +133,17 @@ public class JottoController {
         ArrayList<Character> rightChar = new ArrayList<Character>();
 // end of all the list we need
 //get all the list file
-        userGuessWordList=BuRead1("userGuessWordList.txt");//get guess list user
-        userGuessWordList=BuRead1("userGuessWordList.txt");//get guess list user
-        compGuessWordList=BuRead1("compGuessWordList.txt");//get computer guess list
-        comprightLetterC=castTochar(BuRead1("comprightLetterC.txt"));//get letter right computer is right
-        comprightLetter=BuRead1("comprightLetter.txt");// get the number of letter computer is right
-        userrightLetter=BuRead1("userrightLetter.txt");// get the list of number user right
+        //userGuessWordList=BuRead1("userGuessWordList.txt");//get guess list user
+        List<Plays> turns = playsRepository.findByPlaysIDGameID(gameID);
+        for (Plays turn : turns) {
+            userGuessWordList.add(turn.getPlayerGuess());//get guess list user
+            compGuessWordList.add(turn.getComputerGuess());//get computer guess list
+            for (int i = 0; i < turn.getComputerLettersCorrect().length(); i++) {
+                comprightLetterC.add(turn.getComputerLettersCorrect().charAt(i));
+            }
+            comprightLetter.add(Integer.toString(turn.getComputerLettersCorrect().length()));// get the number of letter computer is right
+            userrightLetter.add(Integer.toString(turn.getPlayerLettersCorrect().length()));// get the list of number user right
+        }
         int valid=validWord(Userword);
       //ArrayList<ArrayList> sepeartletterUser = new ArrayList<ArrayList>();
         ArrayList<ArrayList> sepeartletterComputer = new ArrayList<ArrayList>();
@@ -170,13 +176,13 @@ public class JottoController {
 
 
         userGuessWordList.add(Userword);
-        BuWriter1("userGuessWordList.txt",userGuessWordList);// set guess list user
+        //BuWriter1("userGuessWordList.txt",userGuessWordList);// set guess list user
         ArrayList<String> wordlist = new ArrayList<String>();
         wordlist=BuRead1("wordlist.txt");
         int random = (int)(Math.random() * wordlist.size());
         String compWord=wordlist.get(random);//computer guess letter
         compGuessWordList.add(compWord);
-        BuWriter1("compGuessWordList.txt",compGuessWordList);// set computer guess list
+        //BuWriter1("compGuessWordList.txt",compGuessWordList);// set computer guess list
 
         int compRightUser=guessWord(compWord,userWordO,comprightLetterC);// figure out the world is right this time computer
         if (compRightUser==-1){
@@ -184,8 +190,8 @@ public class JottoController {
             model.put("wordname",compWordO );
             return "winOrlose";}
         comprightLetter.add(Integer.toString(compRightUser));
-        BuWriter1("comprightLetterC.txt",castTostring(comprightLetterC));// set the letter computer back
-        BuWriter1("comprightLetter.txt",comprightLetter);// set the number of letter computer back
+        //BuWriter1("comprightLetterC.txt",castTostring(comprightLetterC));// set the letter computer back
+        //BuWriter1("comprightLetter.txt",comprightLetter);// set the number of letter computer back
 
         int userRightUser=guessWord(Userword,compWordO,rightChar);//figure out the number is right this time user
         if (userRightUser==-1){
@@ -193,7 +199,7 @@ public class JottoController {
             model.put("wordname",compWordO );
             return "winOrlose";}
         userrightLetter.add(Integer.toString(userRightUser));
-        BuWriter1("userrightLetter.txt",userrightLetter);//write the number back user
+        //BuWriter1("userrightLetter.txt",userrightLetter);//write the number back user
         // all the list are finish
         // delete from the word list
         int foundletter=comprightLetterC.size();
