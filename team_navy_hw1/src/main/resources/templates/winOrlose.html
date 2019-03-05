@@ -3,12 +3,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>game</title>
+    <title>Jotto</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-<h1>Game end</h1>
-<!--/*@thymesVar id="userInfo" type=""*/-->
-<p th:text="${gameEnd}"></p>
-the computer's name is: <p th:text="${wordname}"></p>
+<div class="padding-all">
+    <div class="header">
+        <h1>GAME OVER</h1>
+    </div>
+    <div class="design-w3l">
+        <div class="mail-form-agile">
+    <!--/*@thymesVar id="userInfo" type=""*/-->
+    <p th:text="${gameEnd}"></p>
+    <span>the computer's word was: <p th:text="${wordname}"></p></span>
+        </div>
+    </div>
 </body>
 </html>

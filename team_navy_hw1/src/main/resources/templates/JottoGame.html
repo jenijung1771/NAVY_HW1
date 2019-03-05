@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Jotto</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
     <div class="padding-all">
@@ -12,7 +13,7 @@
             <h1>JOTTO</h1>
         </div>
         <div class="design-w3l">
-            <div class="mail-form-agile">
+            <div class="mail-form-agile"">
                 <p th:text="${word}" class="bold"></p>
                 <div>
                     <form action="#" th:action="@{/Gottogame}" th:object="${Guestword}" method="post">
@@ -23,40 +24,105 @@
                         <input type="submit" value="enter"/>
                         <br>
                         <div class="letterlist"><!--TODO: CHANGE COLORS ON CLICK-->
-                            <span>a</span>
-                            <span>b</span>
-                            <span>c</span>
-                            <span>d</span>
-                            <span>e</span>
-                            <span>f</span>
-                            <span>g</span>
-                            <span>h</span>
-                            <span>i</span>
-                            <span>j</span>
-                            <span>k</span>
-                            <span>l</span>
-                            <span>m</span>
-                            <span>n</span>
-                            <span>o</span>
-                            <span>p</span>
-                            <span>q</span>
-                            <span>r</span>
-                            <span>s</span>
-                            <span>t</span>
-                            <span>u</span>
-                            <span>v</span>
-                            <span>w</span>
-                            <span>x</span>
-                            <span>y</span>
-                            <span>z</span>
+                            <span class="let">a</span>
+                            <span class="let">b</span>
+                            <span class="let">c</span>
+                            <span class="let">d</span>
+                            <span class="let">e</span>
+                            <span class="let">f</span>
+                            <span class="let">g</span>
+                            <span class="let">h</span>
+                            <span class="let">i</span>
+                            <span class="let">j</span>
+                            <span class="let">k</span>
+                            <span class="let">l</span>
+                            <span class="let">m</span>
+                            <span class="let">n</span>
+                            <span class="let">o</span>
+                            <span class="let">p</span>
+                            <span class="let">q</span>
+                            <span class="let">r</span>
+                            <span class="let">s</span>
+                            <span class="let">t</span>
+                            <span class="let">u</span>
+                            <span class="let">v</span>
+                            <span class="let">w</span>
+                            <span class="let">x</span>
+                            <span class="let">y</span>
+                            <span class="let">z</span>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+                            <script type="text/javascript">
+                                function changeColor($elm, classes){
+                                    var className = $elm.attr('class');
+                                    var index = $.inArray(className, classes);
+
+                                    $elm.removeClass(className);
+                                    index++;
+                                    if (index===classes.length){
+                                        index=0;
+                                    }
+                                    $elm.addClass(classes[index]);
+                                }
+                                $(function () {
+                                    var $letter = $("span.let");
+                                    var classes=["let", "green", "red"];
+                                    $letter.on("click", function () {
+                                        changeColor($(this), classes);
+                                    })
+                                });
+
+                            </script>
                         </div>
-                        <table class="left">
+                        <p>Your word:</p>
+                        <p th:text="${userword}" class="bold2"></p>
+                        <div class="listContainer">
+                            <ul>
+                                <li>Your Guess</li>
+                                <li th:each="word:${userguessword}" class="bold">
+                                    <span th:text="${word.get(0)}"></span>
+                                    <span th:text="${word.get(1)}"></span>
+                                    <span th:text="${word.get(2)}"></span>
+                                    <span th:text="${word.get(3)}"></span>
+                                    <span th:text="${word.get(4)}"></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>Correct letters</li>
+                                <li th:each="nu: ${numberuser}" class="bold">
+                                    <span th:text="${nu}"></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>Computer's guess</li>
+                                <li th:each="cword:${compguessword}" class="bold">
+                                    <span th:text="${cword.get(0)}" th:classappend="${userword.contains(cword.get(0))} ? green : red"></span>
+                                    <span th:text="${cword.get(1)}" th:classappend="${userword.contains(cword.get(1))} ? green : red"></span>
+                                    <span th:text="${cword.get(2)}" th:classappend="${userword.contains(cword.get(2))} ? green : red"></span>
+                                    <span th:text="${cword.get(3)}" th:classappend="${userword.contains(cword.get(3))} ? green : red"></span>
+                                    <span th:text="${cword.get(4)}" th:classappend="${userword.contains(cword.get(4))} ? green : red"></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>Correct letters</li>
+                                <li th:each="nc: ${numbercomp}" class="bold">
+                                    <span th:text="${nu}"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--<table class="left">
                             <tr>
                                 <th><p>Your guess</p></th>
                                 <th><p>Correct letters</p></th>
                             </tr>
-                            <tr class="bold">
+                            <tr th:each="word : ${userguessword}" class="bold">
                                 <th><p th:text="${userguessword}"></p></th> <!--TODO: MUST BE LISTS!!-->
+                                <!--
+                                <span th:text="${word.get(0)} th:classappend="${userguessword[0].isCorrect} ? green : red">
+                                <span th:text="${userguessword[1]} th:classappend="${userguessword[1].isCorrect} ? green : red">
+                                <span th:text="${userguessword[2]} th:classappend="${userguessword[2].isCorrect} ? green : red">
+                                <span th:text="${userguessword[3]} th:classappend="${userguessword[3].isCorrect} ? green : red">
+                                <span th:text="${userguessword[4]} th:classappend="${userguessword[4].isCorrect} ? green : red">
+
                                 <th><p th:text="${numberuser}"></p></th>
                             </tr>
                         </table>
@@ -69,7 +135,7 @@
                                 <th><p th:text="${compguessword}"></p></th>
                                 <th><p th:text="${numbercomp}"></p></th>
                             </tr>
-                        </table>
+                        </table>-->
                         <!--
                         the word you type:  <p th:text="${userword}"></p>
                         the word you  guess:<p th:text="${userguessword}"></p>
