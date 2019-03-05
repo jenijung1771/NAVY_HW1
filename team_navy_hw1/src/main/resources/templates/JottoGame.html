@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Jotto</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <!--link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" /-->
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body onload="loadColor()">
     <div class="padding-all">
@@ -125,6 +125,9 @@
                                     //window.alert(i+"before"+elem.attr('class'));
                                     //$(elem).removeClass(elem.attr('class'));
                                     $(elem).addClass(localStore);
+                                    if(localStore == null){
+                                        $(elem).addClass('white');
+                                    }
                                     //window.alert(i+" after "+ localStore);
                                 }
                             }
