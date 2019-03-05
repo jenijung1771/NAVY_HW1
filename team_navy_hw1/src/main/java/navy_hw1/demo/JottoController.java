@@ -212,12 +212,22 @@ public class JottoController {
         BuWriter1("wordlist.txt",wordlist);
 
         // create turn
+        String playerCorrect = "";
+        for (char c : rightChar) {
+            playerCorrect = playerCorrect + c;
+        }
+        String computerCorrect = "";
+        for (char c : comprightLetterC) {
+            computerCorrect = computerCorrect + c;
+        }
         Plays turn = new Plays();
         turn.setTurnNumber(turnNum);
         turn.setGameID(gameID);
         turn.setPlayerID(username);
         turn.setPlayerGuess(Userword);
         turn.setComputerGuess(compWord);
+        turn.setPlayerLettersCorrect(playerCorrect);
+        turn.setComputerLettersCorrect(computerCorrect);
         playsRepository.save(turn);
         // turn stored in database
 

@@ -14,6 +14,10 @@ public class Plays implements Serializable {
 
     private String ComputerGuess;
 
+    private String PlayerLettersCorrect;
+
+    private String ComputerLettersCorrect;
+
     public int getGameID() { return playsID.getGameID(); }
 
     public int getTurnNumber() { return playsID.getTurnNumber(); }
@@ -30,6 +34,10 @@ public class Plays implements Serializable {
         return ComputerGuess;
     }
 
+    public String getPlayerLettersCorrect() { return PlayerLettersCorrect; }
+
+    public String getComputerLettersCorrect() { return ComputerLettersCorrect; }
+
     public void setGameID(int gameID) { playsID.setGameID(gameID); }
 
     public void setTurnNumber(int turnNumber) { playsID.setTurnNumber(turnNumber); }
@@ -45,6 +53,10 @@ public class Plays implements Serializable {
     public void setComputerGuess(String computerGuess) {
         ComputerGuess = computerGuess;
     }
+
+    public void setPlayerLettersCorrect(String playerLettersCorrect) { PlayerLettersCorrect = playerLettersCorrect; }
+
+    public void setComputerLettersCorrect(String computerLettersCorrect) { ComputerLettersCorrect = computerLettersCorrect; }
 
     public Plays() {
         playsID = new PlaysID();
