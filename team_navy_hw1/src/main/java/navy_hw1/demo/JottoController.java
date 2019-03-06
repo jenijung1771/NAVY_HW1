@@ -1,16 +1,10 @@
 package navy_hw1.demo;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 import entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +31,7 @@ public class JottoController {
         File file;
         file = new File("words.txt");////put your own url
         BufferedReader br = new BufferedReader(new FileReader(file));
+        new PrintWriter("wordlist.txt").close();
         FileWriter fw = new FileWriter("wordlist.txt");
         BufferedWriter bufw = new BufferedWriter(fw);
         String st;
@@ -139,7 +134,9 @@ public class JottoController {
             userGuessWordList.add(turn.getPlayerGuess());//get guess list user
             compGuessWordList.add(turn.getComputerGuess());//get computer guess list
             for (int i = 0; i < turn.getComputerLettersCorrect().length(); i++) {
-                comprightLetterC.add(turn.getComputerLettersCorrect().charAt(i));
+                if (comprightLetterC.indexOf(turn.getComputerLettersCorrect().charAt(i)) == -1) {
+                    comprightLetterC.add(turn.getComputerLettersCorrect().charAt(i));
+                }
             }
             comprightLetter.add(Integer.toString(turn.getComputerLettersCorrect().length()));// get the number of letter computer is right
             userrightLetter.add(Integer.toString(turn.getPlayerLettersCorrect().length()));// get the list of number user right
